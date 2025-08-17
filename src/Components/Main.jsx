@@ -4,7 +4,7 @@ import Actions from "./Actions";
 import Card from "./Card";
 
 function Main() {
-  let url = "https://dummyjson.com/products?limit=108";
+  let url = "https://dummyjson.com/products?limit=120";
   let [pdtArr,setPdtArr]=useState([])
 
   useEffect(() => {
@@ -25,8 +25,8 @@ function Main() {
   return (
     <div className="min-h-screen">
       <Slider />
-      <Actions />
-      <h1 className="p-[1rem] text-xl text-gray-900/60">Showing {pdtArr.length} products</h1>
+      <Actions pdtArr={pdtArr}/>
+      <h1 className="px-[1.5rem] py-3 text-xl text-gray-900/60">Showing {pdtArr.length} products</h1>
       <Card pdtArr={pdtArr}/>
     </div>
   );

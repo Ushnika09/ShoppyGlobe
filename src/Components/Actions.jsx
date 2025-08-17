@@ -2,7 +2,8 @@ import React from 'react'
 import filter from "../assets/filter.png"
 import Dropdow from './Dropdow'
 
-function Actions() {
+function Actions({pdtArr}) {
+  
     
   return (
     <div className='flex md:flex-row flex-col gap-5 justify-between items-center px-[1.3rem] py-[1.5rem]  bg-neutral-100'>
