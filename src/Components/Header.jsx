@@ -44,7 +44,7 @@ function Header() {
         <input
           type="text"
           placeholder="Search products..."
-          className="border-2 border-gray-600/50 py-2 pl-[2rem] bg-neutral-100 rounded-xl "
+          className="border-2 border-gray-600/50 py-2 pl-[2rem] bg-neutral-100 rounded-xl  max-w-sm"
         />
         <img src={search} alt="" className="h-[1.3rem] absolute left-2" />
       </div>
