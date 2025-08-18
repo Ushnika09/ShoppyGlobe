@@ -17,7 +17,7 @@ function Slider() {
   }, []);
 
   return (
-    <div className="w-full h-[400px] relative overflow-hidden">
+    <div className="w-full h-[400px] relative overflow-hidden ">
       
       <img
         src={arr[index]}

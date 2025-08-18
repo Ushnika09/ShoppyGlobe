@@ -2,7 +2,7 @@ import React from "react";
 import star from "../assets/star.png";
 import cart from "../assets/cart.png";
 
-function Card({ pdtArr }) {
+function Card({ pdtArr, addToCart}) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1.8rem] p-[1.5rem]  py-2">
       {pdtArr.map((pdt, i) => {
@@ -41,7 +41,7 @@ function Card({ pdtArr }) {
               </h1>
               <h1 className="text-[0.7rem] font-medium text-gray-600">{pdt.brand ? `By ${pdt.brand}` : ""}</h1>
             </div>
-            <button className="flex gap-1.5 justify-center items-center bg-[#00BFFF] text-white m-auto mx-4  py-2 rounded-2xl shadow shrink-0 mb-[1rem] my-2 font-semibold hover:bg-[#00ACE6] ">
+            <button className="flex gap-1.5 justify-center items-center bg-[#00BFFF] text-white m-auto mx-4  py-2 rounded-2xl shadow shrink-0 mb-[1rem] my-2 font-semibold hover:bg-[#00ACE6] " onClick={()=>addToCart(pdt)}>
               <img className="h-[1rem]" src={cart} alt="" />
               Add To Cart
             </button>
