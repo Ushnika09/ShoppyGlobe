@@ -1,14 +1,16 @@
-import React, { useEffect,useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import logo from "../assets/logo.png";
 import search from "../assets/search.png";
 import cart from "../assets/cart.png";
 import { Link, useLocation } from "react-router-dom";
 import CartContext from "./CartContext";
+import SearchContext from "./SearchContext";
 
 function Header() {
   const [online, setOnline] = useState(navigator.onLine);
-  const location=useLocation()
-  let {cartItems,setCartItems}=useContext(CartContext)
+  const location = useLocation();
+  const { cartItems } = useContext(CartContext);
+  const { searchItems, setSearchItems } = useContext(SearchContext);
 
   useEffect(() => {
     const goOnline = () => setOnline(true);
@@ -24,54 +26,89 @@ function Header() {
   }, []);
 
   return (
-    <div className=" py-[1.2rem]  px-[1.7rem] flex justify-between shadow-2xl min-w-full bg-white/90 fixed top-0 z-10">
-      <Link to="/" className="flex gap-2.5 justify-center items-center ">
-        <div className="relative">
-          <img
-            src={logo}
-            alt=""
-            className="md:h-[3rem] md:p-[0.5rem] h-[2rem] p-[0.3rem] bg-[#00BFFF] rounded-lg md:rounded-2xl "
-          />
-          <div
-            className={`absolute md:h-[1rem] md:w-[1rem] w-[0.7rem] h-[0.7rem] rounded-full md:left-9 -top-1 -right-1 animate-pulse
-              ${online ? "bg-[#FFB400]" : "bg-red-500"} `}
-          ></div>
-        </div>
-        <p className="text-[1.1rem] md:text-2xl font-bold text-[#00BFFF]">
-          ShoppyGlobe
-        </p>
-      </Link>
+    <div className="py-3 px-5 bg-white/90 shadow-md fixed top-0 w-full z-10 flex justify-center items-center flex-wrap">
 
-      <div className="sm:flex  justify-center items-center relative hidden">
-        <input
-          type="text"
-          placeholder="Search products..."
-          className="border-2 border-gray-600/50 py-2 pl-[2rem] bg-neutral-100 rounded-xl  max-w-sm"
-        />
-        <img src={search} alt="" className="h-[1.3rem] absolute left-2" />
+      {/* Main Row: Logo, Search, Home+Cart */}
+      <div className="flex items-center justify-between w-full gap-16">
+
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+          <div className="relative">
+            <img
+              src={logo}
+              alt=""
+              className="md:h-[3rem] md:p-1 h-8 p-1 bg-[#00BFFF] rounded-lg md:rounded-2xl"
+            />
+            <div
+              className={`absolute md:h-4 md:w-4 w-2 h-2 rounded-full md:left-9 -top-1 -right-1 animate-pulse ${
+                online ? "bg-[#FFB400]" : "bg-red-500"
+              }`}
+            ></div>
+          </div>
+          <p className="text-[1.1rem] md:text-2xl font-bold text-[#00BFFF]">
+            ShoppyGlobe
+          </p>
+        </Link>
+
+        {/* Search: center */}
+        <div className="flex-1 mx-5 relative hidden md:flex justify-center lg:max-w-sm">
+          <input
+            onChange={(e) => setSearchItems(e.target.value)}
+            value={searchItems}
+            type="text"
+            placeholder="Search products..."
+            className=" w-full border-2 border-gray-300 rounded-xl pl-8 py-1 md:py-2 text-sm md:text-base bg-neutral-100 focus:outline-none "
+          />
+          <img
+            src={search}
+            alt=""
+            className="absolute left-2 top-1/2 -translate-y-1/2 h-4 md:h-5"
+          />
+        </div>
+
+        {/* Home + Cart */}
+        <div className="flex items-center gap-4 md:gap-6 flex-shrink-0">
+          <Link
+            to="/"
+            className={`text-[1rem] md:text-xl hover:cursor-pointer hover:text-[#00BFFF] px-3 py-1 hover:bg-neutral-100 duration-300 rounded-sm ${
+              location.pathname === "/" ? "bg-[#00BFFF] text-white" : "bg-white"
+            }`}
+          >
+            Home
+          </Link>
+
+          <Link
+            to="cart"
+            className={`hover:cursor-pointer hover:text-[#00BFFF] px-3 py-1 hover:bg-neutral-100 rounded-sm duration-300 relative shrink-0 ${
+              location.pathname === "/cart" ? "bg-[#00BFFF] text-white" : "bg-white/0"
+            }`}
+          >
+            <img
+              src={cart}
+              alt=""
+              className="h-8 md:h-12 p-1"
+            />
+            <div className="md:h-7 md:w-7 h-4 w-4 rounded-full flex justify-center items-center bg-red-800 text-white text-[0.5rem] md:text-xl md:font-semibold absolute md:bottom-7 md:left-10 bottom-5.5 left-8">
+              {cartItems.length}
+            </div>
+          </Link>
+        </div>
       </div>
 
-      <div className="flex gap-[3rem] justify-center items-center">
-        <Link to="/"
-          className={`home text-[1rem] md:text-xl hover:cursor cursor-pointer hover:text-[#00BFFF] px-[1.3rem] py-[0.5rem] hover:bg-neutral-100 duration-300 rounded-sm ${
-            location.pathname == "/" ? "bg-[#00BFFF] text-white" : "bg-white"
-          }`}
-        
-        >
-          Home
-        </Link>
-        <Link to="cart" className={ ` hover:cursor cursor-pointer hover:text-[#00BFFF] px-[1rem]  hover:bg-neutral-100  rounded-sm duration-300 relative ${
-            location.pathname == "/cart" ? "bg-[#00BFFF] text-white" : "bg-white"
-          }`}>
-            <img
-          src={cart}
-          
-          alt=""
-          className={`cart h-[2rem] md:h-[3rem] md:p-[0.5rem]  p-[0.3rem] py-[0.5rem]`}
+      {/* Search on small screens */}
+      <div className="max-w-sm mt-2 flex justify-center md:hidden relative ">
+        <input
+          onChange={(e) => setSearchItems(e.target.value)}
+          value={searchItems}
+          type="text"
+          placeholder="Search products..."
+          className="min-w-sm border-2 border-gray-300 rounded-xl pl-8 py-1 text-sm bg-neutral-100 focus:outline-none"
         />
-        <div className="h-5 w-5 rounded-full flex justify-center items-center bg-red-800 text-white font-semibold absolute bottom-7 left-10">{cartItems.length}</div>
-
-        </Link>
+        <img
+          src={search}
+          alt=""
+          className="absolute left-2 top-1/2 -translate-y-1/2 h-4"
+        />
       </div>
     </div>
   );

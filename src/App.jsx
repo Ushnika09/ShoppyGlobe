@@ -9,15 +9,18 @@ import CartContext from "./Components/CartContext";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [searchItems, setSearchItems] = useState("");
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
-      <div className="min-h-screen">
-        <Header />
-        <div className="mt-[5.3rem]">
-          <Outlet  />
+      <SearchContext.Provider value={{ searchItems, setSearchItems }}>
+        <div className="min-h-screen">
+          <Header />
+          <div className="md:mt-[5.1rem]  mt-[6.4rem]">
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </SearchContext.Provider>
     </CartContext.Provider>
   );
 }

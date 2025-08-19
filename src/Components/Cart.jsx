@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import Cartitem from "./Cartitem";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
+import ActiveCart from "./ActiveCart";
 
 function Cart() {
   let {cartItems}=useContext(CartContext)
@@ -33,7 +33,8 @@ function Cart() {
           </Link>
         </div>
       ) : (
-        <Cartitem cartItems={cartItems}/>
+        <ActiveCart cartItems={cartItems}/>
+        
       )}
     </div>
   );

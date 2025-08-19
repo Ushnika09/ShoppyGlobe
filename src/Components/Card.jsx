@@ -16,6 +16,7 @@ function Card({ pdtArr, addToCart}) {
               className="h-[15rem] w-full  hover:scale-115 duration-300 overflow-hidden"
               src={pdt.thumbnail}
               alt=""
+              loading="lazy"
             />
             </div>
             <span className="capitalize absolute top-[12.5rem] left-3 px-3 py-1  rounded-2xl text-[0.7rem] font-bold border-gray-700/50 border shadow bg-neutral-100">{pdt.category}</span>

@@ -7,7 +7,7 @@ function Cartitem({cartItems}) {
         cartItems.map((cartItems,i)=>{
           return(
             <div>
-              
+              <Cartitem cartItems={cartItems}/>
             </div>
           )
         })
