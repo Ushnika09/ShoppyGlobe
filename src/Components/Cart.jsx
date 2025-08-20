@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import CartContext from "./CartContext";
+import { useSelector } from "react-redux";
+
 import ActiveCart from "./ActiveCart";
 
 function Cart() {
-  let {cartItems}=useContext(CartContext)
+  let cartItems=useSelector((state) => state.cart.items);
+
     
   useEffect(()=>{
     console.log("Cart",cartItems);  

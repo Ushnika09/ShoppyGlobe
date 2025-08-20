@@ -15,7 +15,7 @@ function App() {
       <SearchContext.Provider value={{ searchItems, setSearchItems }}>
         <div className="min-h-screen">
           <Header />
-          <div className="md:mt-[5.1rem]  mt-[6.4rem]">
+          <div className="md:mt-[5rem]  mt-[6.4rem]">
             <Outlet />
           </div>
           <Footer />

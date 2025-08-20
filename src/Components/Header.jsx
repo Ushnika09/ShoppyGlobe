@@ -3,13 +3,14 @@ import logo from "../assets/logo.png";
 import search from "../assets/search.png";
 import cart from "../assets/cart.png";
 import { Link, useLocation } from "react-router-dom";
-import CartContext from "./CartContext";
+// import CartContext from "./CartContext";
 import SearchContext from "./SearchContext";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [online, setOnline] = useState(navigator.onLine);
   const location = useLocation();
-  const { cartItems } = useContext(CartContext);
+  const  cartItems = useSelector((state) => state.cart.items);
   const { searchItems, setSearchItems } = useContext(SearchContext);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="py-3 px-5 bg-white/90 shadow-md fixed top-0 w-full z-10 flex justify-center items-center flex-wrap">
+    <div className="py-4 px-5 bg-white/90 shadow-md fixed top-0 w-full z-10 flex justify-center items-center flex-wrap">
 
       {/* Main Row: Logo, Search, Home+Cart */}
       <div className="flex items-center justify-between w-full gap-16">
@@ -37,7 +38,7 @@ function Header() {
             <img
               src={logo}
               alt=""
-              className="md:h-[3rem] md:p-1 h-8 p-1 bg-[#00BFFF] rounded-lg md:rounded-2xl"
+              className="md:h-[3rem] md:p-1 h-8 p-1 bg-[#00BFFF] rounded-lg md:rounded-2xl shrink-0"
             />
             <div
               className={`absolute md:h-4 md:w-4 w-2 h-2 rounded-full md:left-9 -top-1 -right-1 animate-pulse ${
@@ -79,16 +80,16 @@ function Header() {
 
           <Link
             to="cart"
-            className={`hover:cursor-pointer hover:text-[#00BFFF] px-3 py-1 hover:bg-neutral-100 rounded-sm duration-300 relative shrink-0 ${
+            className={`hover:cursor-pointer hover:text-[#00BFFF]   hover:bg-neutral-100 rounded-sm duration-300 relative shrink-0 ${
               location.pathname === "/cart" ? "bg-[#00BFFF] text-white" : "bg-white/0"
             }`}
           >
             <img
               src={cart}
               alt=""
-              className="h-8 md:h-12 p-1"
+              className="h-8 md:h-10 p-1 px-3"
             />
-            <div className="md:h-7 md:w-7 h-4 w-4 rounded-full flex justify-center items-center bg-red-800 text-white text-[0.5rem] md:text-xl md:font-semibold absolute md:bottom-7 md:left-10 bottom-5.5 left-8">
+            <div className="md:h-7 md:w-7 h-5 w-5 rounded-full flex justify-center items-center bg-red-800 text-white text-[0.7rem] md:text-xl font-semibold absolute md:bottom-5 md:left-8 bottom-4.5 left-7">
               {cartItems.length}
             </div>
           </Link>
