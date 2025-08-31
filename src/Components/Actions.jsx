@@ -9,6 +9,7 @@ function Actions({categories,categoryChange,onSort,clearFilters,category,sortOpt
   let { searchItems,setSearchItems } = useContext(SearchContext);
 
   const isFiltered =category !== "all" || sortOpt !== "" || (searchItems.trim() !== "");
+  
   return (
     <div className="flex md:flex-row flex-col gap-5 justify-between items-center px-[1.3rem] py-[1.5rem]  bg-neutral-100">
       <div className="flex items-center  md:flex-row flex-col gap-5">

@@ -8,6 +8,8 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       state.items.push(action.payload)
+      // ✅ show toast only when successfully added
+      // toast.success(`${item.name} added to cart`, { autoClose: 1500 });
     },
     removeFromCart: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload)

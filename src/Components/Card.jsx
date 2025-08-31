@@ -2,6 +2,7 @@ import React from "react";
 import star from "../assets/star.png";
 import cart from "../assets/cart.png";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLoading } from "react-icons/ai";
 
 function Card({ pdtArr, addToCart }) {
   const navigate = useNavigate();
@@ -19,12 +20,15 @@ function Card({ pdtArr, addToCart }) {
           }}
         >
           <div className="bg-purple-100/70 overflow-hidden">
-            <img
+            {pdt.thumbnail ?
+              <img
               className="h-[15rem] w-full hover:scale-115 duration-300 overflow-hidden"
               src={pdt.thumbnail}
               alt=""
               loading="lazy"
-            />
+            /> :
+            <AiOutlineLoading/>
+            }
           </div>
           <span className="capitalize absolute top-[12.5rem] left-3 px-3 py-1 rounded-2xl text-[0.7rem] font-bold border-gray-700/50 border shadow bg-neutral-100">
             {pdt.category}

@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import ActiveCart from "./ActiveCart";
+import ActiveCart from "../Components/ActiveCart";
 
 function Cart() {
   let cartItems=useSelector((state) => state.cart.items);

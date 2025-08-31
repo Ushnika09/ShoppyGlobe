@@ -1,11 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
-import Slider from "./Slider";
-import Actions from "./Actions";
-import Card from "./Card";
-import SearchContext from "./SearchContext";
+import React, { useEffect, useState, useContext, lazy, Suspense } from "react";
+import Slider from "../Components/Slider";
+import Actions from "../Components/Actions";
+
+import SearchContext from "../Components/SearchContext";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import useFetchProducts from "../hooks/useFetchProducts";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+const Card =lazy(()=>import  ("../Components/Card"))
 
 function Main() {
   const url = "https://dummyjson.com/products?limit=132";
@@ -87,7 +90,9 @@ function Main() {
       <h1 className="px-[1.5rem] py-3 text-xl text-gray-900/60">
         Showing {filteredPdt.length} products
       </h1>
-      <Card pdtArr={filteredPdt} addToCart={handleAddToCart} />
+      <Suspense>
+        <Card pdtArr={filteredPdt} addToCart={handleAddToCart} />
+      </Suspense>
     </div>
   );
 }

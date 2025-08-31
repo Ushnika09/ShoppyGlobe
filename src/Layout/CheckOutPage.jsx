@@ -1,45 +1,36 @@
+// src/pages/CheckoutPage.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { clearCart} from '../redux/cartSlice'
+import { clearCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
 
 const paymentOptions = [
   "Credit/Debit Card",
   "UPI",
   "Net Banking",
-  "Cash on Delivery"
+  "Cash on Delivery",
 ];
 
-export default function CheckoutModal({ onClose }) {
+export default function CheckoutPage() {
   const [selected, setSelected] = useState("");
   const [orderPlaced, setOrderPlaced] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
 
   const handlePlaceOrder = () => {
     setOrderPlaced(true);
-     
+
     setTimeout(() => {
       dispatch(clearCart());
-      onClose();
-      navigate("/");
+      navigate("/"); // back to home
     }, 1800);
-
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md border border-gray-200 relative">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md border border-gray-200">
         {!orderPlaced ? (
           <>
-            <button
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl"
-              onClick={onClose}
-              title="Close"
-            >
-              &times;
-            </button>
             <h2 className="text-2xl font-bold text-[#00BFFF] mb-6 text-center">
               Choose Payment Method
             </h2>
@@ -75,12 +66,38 @@ export default function CheckoutModal({ onClose }) {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center py-10">
-            <svg className="w-16 h-16 mb-4 text-green-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="#e6fbe6" />
-              <path d="M8 12l2 2 4-4" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            <svg
+              className="w-16 h-16 mb-4 text-green-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="#e6fbe6"
+              />
+              <path
+                d="M8 12l2 2 4-4"
+                stroke="#22c55e"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
             </svg>
-            <h3 className="text-xl font-bold text-green-600 mb-2">Order Placed!</h3>
-            <p className="text-gray-600 text-center">Thank you for shopping with ShoppyGlobe.<br />Redirecting to home...</p>
+            <h3 className="text-xl font-bold text-green-600 mb-2">
+              Order Placed!
+            </h3>
+            <p className="text-gray-600 text-center">
+              Thank you for shopping with ShoppyGlobe.
+              <br />
+              Redirecting to home...
+            </p>
           </div>
         )}
       </div>

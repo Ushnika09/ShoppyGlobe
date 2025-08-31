@@ -84,7 +84,7 @@ function Cartitem() {
       <div className="w-full max-w-sm">
         <OrderSummary onCheckout={() => setShowCheckout(true)} />
       </div>
-      {showCheckout && <CheckoutModal onClose={() => setShowCheckout(false)} />}
+      {/* {showCheckout && <CheckoutModal onClose={() => setShowCheckout(false)} />} */}
     </div>
   )
 }

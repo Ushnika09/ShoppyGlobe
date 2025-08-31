@@ -2,7 +2,9 @@ import React from "react";
 
 function Dropdow({ categories, categoryChange, onSort ,category,
   sortOpt}) {
+    
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
   return (
     <div className="flex flex-row gap-5 justify-between">
       <div className="relative ">

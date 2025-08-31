@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function OrderSummary({ onCheckout }) {
   const cartItems = useSelector((state) => state.cart.items);
@@ -47,12 +48,12 @@ function OrderSummary({ onCheckout }) {
         <span className="font-bold text-lg">Total</span>
         <span className="font-bold text-2xl">${subtotal.toFixed(2)}</span>
       </div>
-      <button
-        className="w-full py-3 bg-[#00BFFF] text-white rounded-lg font-semibold text-lg shadow hover:bg-[#009acd] transition"
+      <Link to={"/cart/checkout"}
+        className="w-full flex justify-center py-3 bg-[#00BFFF] text-white rounded-lg font-semibold text-lg shadow hover:bg-[#009acd] transition"
         onClick={onCheckout}
       >
         Proceed to Checkout
-      </button>
+      </Link>
       <p className="text-center text-gray-400 text-xs mt-4">
         Secure checkout powered by{" "}
         <span className="font-semibold text-[#00BFFF]">ShoppyGlobe</span>
